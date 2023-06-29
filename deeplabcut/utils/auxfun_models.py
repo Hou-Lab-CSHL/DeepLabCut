@@ -105,7 +105,7 @@ def download_model(modelname, target_dir):
     """
     import urllib.request
     import tarfile
-    from tqdm import tqdm
+    from tqdm.auto import tqdm
 
     def show_progress(count, block_size, total_size):
         pbar.update(block_size)

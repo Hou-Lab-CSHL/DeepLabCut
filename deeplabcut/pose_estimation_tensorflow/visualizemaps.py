@@ -62,7 +62,7 @@ def extract_maps(
     from deeplabcut.pose_estimation_tensorflow.config import load_config
     from deeplabcut.pose_estimation_tensorflow.datasets.utils import data_to_input
     from deeplabcut.utils import auxiliaryfunctions
-    from tqdm import tqdm
+    from tqdm.auto import tqdm
     import tensorflow as tf
 
     import pandas as pd
@@ -423,7 +423,7 @@ def extract_save_all_maps(
         get_evaluation_folder,
         intersection_of_body_parts_and_ones_given_by_user,
     )
-    from tqdm import tqdm
+    from tqdm.auto import tqdm
 
     cfg = read_config(config)
     data = extract_maps(

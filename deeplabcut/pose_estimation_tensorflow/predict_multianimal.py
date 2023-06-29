@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 from skimage.color import rgba2rgb
 from skimage.util import img_as_ubyte
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 from deeplabcut.pose_estimation_tensorflow.core import predict_multianimal as predict
 from deeplabcut.utils import auxiliaryfunctions, auxfun_multianimal

@@ -17,7 +17,7 @@ from itertools import combinations
 from pathlib import Path
 
 import numpy as np
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 from deeplabcut.generate_training_dataset import (
     merge_annotateddatasets,

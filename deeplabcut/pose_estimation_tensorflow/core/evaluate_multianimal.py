@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.spatial import cKDTree
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 from deeplabcut.pose_estimation_tensorflow.core.evaluate import make_results_file
 from deeplabcut.pose_estimation_tensorflow.config import load_config

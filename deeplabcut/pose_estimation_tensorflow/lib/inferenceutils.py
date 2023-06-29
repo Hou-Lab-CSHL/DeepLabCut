@@ -26,7 +26,7 @@ from scipy.spatial import cKDTree
 from scipy.spatial.distance import pdist, cdist
 from scipy.special import softmax
 from scipy.stats import gaussian_kde, chi2
-from tqdm import tqdm
+from tqdm.auto import tqdm
 from typing import Tuple
 
 

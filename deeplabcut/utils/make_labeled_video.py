@@ -1105,7 +1105,7 @@ def create_video_with_all_detections(
 
 def _create_video_from_tracks(video, tracks, destfolder, output_name, pcutoff, scale=1):
     import subprocess
-    from tqdm import tqdm
+    from tqdm.auto import tqdm
 
     if not os.path.isdir(destfolder):
         os.mkdir(destfolder)

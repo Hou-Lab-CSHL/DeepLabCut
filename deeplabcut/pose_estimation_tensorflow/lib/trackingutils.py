@@ -21,7 +21,7 @@ from numba import jit
 from numba.core.errors import NumbaPerformanceWarning
 from scipy.optimize import linear_sum_assignment
 from scipy.stats import mode
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 
 warnings.simplefilter("ignore", category=NumbaPerformanceWarning)

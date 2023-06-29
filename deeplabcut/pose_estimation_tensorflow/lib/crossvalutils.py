@@ -15,7 +15,7 @@ import pickle
 import shutil
 from collections import defaultdict
 from copy import deepcopy
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 import networkx as nx
 import numpy as np

@@ -18,7 +18,7 @@ import imgaug.augmenters as iaa
 import numpy as np
 import pandas as pd
 from skimage.util import img_as_ubyte
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 from deeplabcut.modelzoo.utils import parse_available_supermodels
 from deeplabcut.pose_estimation_tensorflow.config import load_config

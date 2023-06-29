@@ -25,7 +25,7 @@ import cv2
 import numpy as np
 from skimage.util import img_as_ubyte
 from sklearn.cluster import MiniBatchKMeans
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 
 def UniformFrames(clip, numframes2pick, start, stop, Index=None):

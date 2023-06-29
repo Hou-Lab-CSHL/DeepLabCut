@@ -30,7 +30,7 @@ from matplotlib import gridspec
 from matplotlib.animation import FFMpegWriter
 from matplotlib.collections import LineCollection
 from mpl_toolkits.mplot3d.art3d import Line3DCollection
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 
 def set_up_grid(figsize, xlim, ylim, zlim, view):
