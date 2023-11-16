@@ -71,25 +71,34 @@ def convertcsv2h5(config, userfeedback=True, scorer=None):
                 fn = os.path.join(
                     str(folder), "CollectedData_" + cfg["scorer"] + ".csv"
                 )
-                # Determine whether the data are single- or multi-animal without loading into memory
-                # simply by checking whether 'individuals' is in the second line of the CSV.
-                with open(fn) as datafile:
-                    head = list(islice(datafile, 0, 5))
-                if "individuals" in head[1]:
-                    header = list(range(4))
-                else:
-                    header = list(range(3))
-                if head[-1].split(",")[0] == "labeled-data":
-                    index_col = [0, 1, 2]
-                else:
-                    index_col = 0
-                data = pd.read_csv(fn, index_col=index_col, header=header)
-                data.columns = data.columns.set_levels([scorer], level="scorer")
-                guarantee_multiindex_rows(data)
-                data.to_hdf(fn.replace(".csv", ".h5"), key="df_with_missing", mode="w")
-                data.to_csv(fn)
+            convertcsv2h5_single(fn, scorer)
         except FileNotFoundError:
             print("Attention:", folder, "does not appear to have labeled data!")
+
+
+def convertcsv2h5_single(fn, scorer):
+    data = csv2df(fn, scorer)
+    data.to_hdf(fn.replace(".csv", ".h5"), key="df_with_missing", mode="w")
+    data.to_csv(fn)
+
+
+def csv2df(fn, scorer):
+    # Determine whether the data are single- or multi-animal without loading into memory
+    # simply by checking whether 'individuals' is in the second line of the CSV.
+    with open(fn) as datafile:
+        head = list(islice(datafile, 0, 5))
+    if "individuals" in head[1]:
+        header = list(range(4))
+    else:
+        header = list(range(3))
+    if head[-1].split(",")[0] == "labeled-data":
+        index_col = [0, 1, 2]
+    else:
+        index_col = 0
+    data = pd.read_csv(fn, index_col=index_col, header=header)
+    data.columns = data.columns.set_levels([scorer], level="scorer")
+    guarantee_multiindex_rows(data)
+    return data
 
 
 def analyze_videos_converth5_to_csv(video_folder, videotype=".mp4", listofvideos=False):
