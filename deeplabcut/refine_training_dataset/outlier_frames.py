@@ -495,6 +495,7 @@ def extract_outlier_frames(
                         cluster_color,
                         savelabeled,
                         copy_videos=copy_videos,
+                        comparisionbodyparts=comparisonbodyparts,
                     )
                 else:
                     print(
@@ -632,6 +633,7 @@ def ExtractFramesbasedonPreselection(
     savelabeled=True,
     with_annotations=True,
     copy_videos=False,
+    comparisionbodyparts="all",
 ):
     from deeplabcut.create_project import add
 
@@ -639,7 +641,7 @@ def ExtractFramesbasedonPreselection(
     stop = cfg["stop"]
     numframes2extract = cfg["numframes2pick"]
     bodyparts = auxiliaryfunctions.intersection_of_body_parts_and_ones_given_by_user(
-        cfg, "all"
+        cfg, comparisionbodyparts
     )
 
     videofolder = str(Path(video).parents[0])
@@ -860,6 +862,11 @@ def ExtractFramesbasedonPreselection(
                 df = pd.DataFrame(array, index=idx, columns=columns)
             else:
                 return
+
+            # Remove predictions for non-requested bodyparts
+            mask = df.loc[:, (slice(None), bodyparts, slice(None))] != None
+            df = df.where(mask, np.nan)
+
             if Path(machinefile).is_file():
                 Data = pd.read_hdf(machinefile, "df_with_missing")
                 conversioncode.guarantee_multiindex_rows(Data)
