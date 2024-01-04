@@ -42,7 +42,7 @@ def launch_napari(files=None):
             action.trigger()
             break
     if files is not None:
-        viewer.open(files, plugin="napari-deeplabcut")
+        viewer.open(files, plugin="napari_deeplabcut")
     return viewer
 
 
