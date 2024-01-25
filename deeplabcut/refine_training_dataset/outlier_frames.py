@@ -1128,6 +1128,9 @@ def merge_datasets(config, forceiterate=None):
             os.path.join(folder, "CollectedData_" + cfg["scorer"] + ".h5")
         ):  # Folder that contains human data set...
             pass
+        elif len([f for f in os.listdir(folder) if not f.startswith(".")]) == 0:
+            # Folder is empty...
+            pass
         else:
             print("The following folder was not manually refined,...", folder)
             flagged = True
